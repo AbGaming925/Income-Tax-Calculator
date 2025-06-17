@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Income Tax Calculator (Python Flask)</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f4f8fb;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 80px auto;
+            padding: 30px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+            color: #34495e;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            background-color: #0077cc;
+            color: white;
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #005fa3;
+        }
+
+        .output {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #ecf5ff;
+            border-left: 5px solid #0077cc;
+            border-radius: 8px;
+        }
+
+        .output p {
+            margin: 10px 0;
+            font-size: 16px;
+            color: #333;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #888;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>💼 Income Tax Calculator</h2>
+
+        <form method="POST">
+            <label for="income">Enter Your Income (₹):</label>
+            <input type="number" name="income" id="income" placeholder="e.g., 750000" required>
+            <button type="submit">Calculate Tax</button>
+        </form>
+
+        {% if result %}
+            <div class="output">
+                {% if result.error %}
+                    <p style="color:red;">{{ result.error }}</p>
+                {% else %}
+                    <p>📥 Entered Income: {{ result.income }}</p>
+                    <p>🧾 Base Tax: {{ result.base_tax }}</p>
+                    <p>💊 Cess (4%): {{ result.cess }}</p>
+                    <p>💰 Total Tax Payable: {{ result.total_tax }}</p>
+                {% endif %}
+            </div>
+        {% endif %}
+    </div>
+
+    <footer>Powered by Python & Flask | Designed by Absolute Bittu</footer>
+
+</body>
+</html>
